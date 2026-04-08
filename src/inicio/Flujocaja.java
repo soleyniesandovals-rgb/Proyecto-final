@@ -226,7 +226,7 @@ lblNewLabel_2.setIcon(iconScaled21);
 		textPrecio.setBounds(10, 341, 152, 30);
 		panel_1.add(textPrecio);
 		
-		JLabel lblAgregar = new JLabel("Agregar");
+		JLabel lblAgregar = new JLabel("Guardar");
 		lblAgregar.setBackground(new Color(0, 128, 64));
 		lblAgregar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblAgregar.setBounds(59, 419, 71, 28);
