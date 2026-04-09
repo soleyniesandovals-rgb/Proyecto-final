@@ -53,7 +53,7 @@ public class Flujocaja extends JFrame {
 	public Flujocaja() {
 		setTitle("Flujo de caja");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 713, 510);
+		setBounds(100, 100, 875, 521);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,7 +62,7 @@ public class Flujocaja extends JFrame {
 		//menu
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 128, 255));
-		panel.setBounds(0, 0, 147, 471);
+		panel.setBounds(0, 0, 147, 482);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -175,7 +175,7 @@ public class Flujocaja extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(148, 0, 549, 471);
+		panel_1.setBounds(148, 0, 711, 482);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -280,7 +280,7 @@ public class Flujocaja extends JFrame {
 		lblAgregar.setIcon(agrScaled);
 		lblAgregar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblAgregar.setForeground(new Color(0, 0, 0));
-		lblAgregar.setBounds(48, 419, 136, 35);
+		lblAgregar.setBounds(200, 419, 136, 35);
 		lblAgregar.setContentAreaFilled(false);
 		lblAgregar.setFocusPainted(false);
 		lblAgregar.setBorderPainted(false);
@@ -318,7 +318,7 @@ public class Flujocaja extends JFrame {
 		lblEditar.setIcon(ediScaled);
 		lblEditar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblEditar.setForeground(new Color(0, 0, 0));
-		lblEditar.setBounds(215, 419, 136, 35);
+		lblEditar.setBounds(367, 419, 136, 35);
 		lblEditar.setContentAreaFilled(false);
 		lblEditar.setFocusPainted(false);
 		lblEditar.setBorderPainted(false);
@@ -352,7 +352,7 @@ public class Flujocaja extends JFrame {
 		lblEliminar.setIcon(eliScaled);
 		lblEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblEliminar.setForeground(new Color(0, 0, 0));
-		lblEliminar.setBounds(378, 419, 150, 35);
+		lblEliminar.setBounds(530, 419, 150, 35);
 		lblEliminar.setContentAreaFilled(false);
 		lblEliminar.setFocusPainted(false);
 		lblEliminar.setBorderPainted(false);
@@ -362,7 +362,7 @@ public class Flujocaja extends JFrame {
 		//fin botones
 
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(190, 64, 338, 344);
+		panel_3.setBounds(190, 64, 499, 344);
 		panel_1.add(panel_3);
 
 		JTextArea textProducto = new JTextArea();
@@ -373,13 +373,13 @@ public class Flujocaja extends JFrame {
 
 		JLabel lblNewLabel_3 = new JLabel("$:");
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 19));
-		lblNewLabel_3.setBounds(412, 11, 19, 30);
+		lblNewLabel_3.setBounds(574, 11, 19, 30);
 		panel_1.add(lblNewLabel_3);
 
 		JLabel lblNewLabel_4 = new JLabel("000");
 		lblNewLabel_4.setForeground(new Color(0, 128, 0));
 		lblNewLabel_4.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(432, 15, 95, 28);
+		lblNewLabel_4.setBounds(594, 15, 95, 28);
 		panel_1.add(lblNewLabel_4);
 	}
 }

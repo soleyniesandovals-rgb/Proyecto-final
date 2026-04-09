@@ -40,6 +40,7 @@ public class Transacciones extends JFrame {
 			}
 		});
 	}
+	
 
 	/**
 	 * Create the frame.
@@ -48,7 +49,7 @@ public class Transacciones extends JFrame {
 		setBackground(new Color(0, 0, 0));
 		setTitle("Tansacciones");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 713, 506);
+		setBounds(100, 100, 875, 499);
 		contentPane = new JPanel();
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
@@ -173,7 +174,7 @@ public class Transacciones extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(148, 0, 549, 467);
+		panel_1.setBounds(148, 0, 711, 467);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -263,7 +264,7 @@ public class Transacciones extends JFrame {
 		lblAgregar.setIcon(agrScaled);
 		lblAgregar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblAgregar.setForeground(new Color(0, 0, 0));
-		lblAgregar.setBounds(48, 419, 136, 35);
+		lblAgregar.setBounds(206, 421, 136, 35);
 		lblAgregar.setContentAreaFilled(false);
 		lblAgregar.setFocusPainted(false);
 		lblAgregar.setBorderPainted(false);
@@ -302,7 +303,7 @@ public class Transacciones extends JFrame {
 		lblEditar.setIcon(ediScaled);
 		lblEditar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblEditar.setForeground(new Color(0, 0, 0));
-		lblEditar.setBounds(215, 419, 136, 35);
+		lblEditar.setBounds(373, 421, 136, 35);
 		lblEditar.setContentAreaFilled(false);
 		lblEditar.setFocusPainted(false);
 		lblEditar.setBorderPainted(false);
@@ -337,7 +338,7 @@ public class Transacciones extends JFrame {
 		lblEliminar.setIcon(eliScaled);
 		lblEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblEliminar.setForeground(new Color(0, 0, 0));
-		lblEliminar.setBounds(378, 419, 150, 35);
+		lblEliminar.setBounds(536, 421, 150, 35);
 		lblEliminar.setContentAreaFilled(false);
 		lblEliminar.setFocusPainted(false);
 		lblEliminar.setBorderPainted(false);
@@ -371,7 +372,7 @@ public class Transacciones extends JFrame {
 		rdbtnVenta_1_1.setBackground(Color.WHITE);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(190, 64, 338, 343);
+		panel_3.setBounds(203, 64, 483, 343);
 		panel_1.add(panel_3);
 		
 		

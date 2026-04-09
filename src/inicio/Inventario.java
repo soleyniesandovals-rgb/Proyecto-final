@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -62,7 +63,7 @@ public class Inventario extends JFrame {
 	public Inventario() {
 		setTitle("Inventario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 713, 506);
+		setBounds(100, 100, 875, 521);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,7 +71,7 @@ public class Inventario extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 128, 255));
-		panel.setBounds(0, 0, 147, 467);
+		panel.setBounds(0, 0, 147, 482);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -181,7 +182,7 @@ public class Inventario extends JFrame {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(148, 0, 549, 467);
+		panel_1.setBounds(148, 0, 711, 482);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -192,45 +193,60 @@ public class Inventario extends JFrame {
 
 		JLabel lblNewLabel_1 = new JLabel("Codigo:");
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_1.setBounds(10, 64, 83, 18);
+		lblNewLabel_1.setBounds(10, 52, 83, 18);
 		panel_1.add(lblNewLabel_1);
 
 		JTextArea textCodigo = new JTextArea();
 		textCodigo.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		textCodigo.setBackground(new Color(190, 184, 187));
-		textCodigo.setBounds(10, 89, 152, 30);
+		textCodigo.setBounds(10, 77, 152, 30);
 		panel_1.add(textCodigo);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Cantidad:");
 		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_1_1.setBounds(10, 191, 83, 14);
+		lblNewLabel_1_1.setBounds(10, 242, 83, 14);
 		panel_1.add(lblNewLabel_1_1);
 
 		JTextArea textCantidad = new JTextArea();
 		textCantidad.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		textCantidad.setBackground(new Color(190, 184, 187));
-		textCantidad.setBounds(10, 216, 152, 30);
+		textCantidad.setBounds(10, 267, 152, 30);
 		panel_1.add(textCantidad);
 
 		JLabel lblNewLabel_1_2 = new JLabel("Producto:");
 		lblNewLabel_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_1_2.setBounds(10, 130, 83, 14);
+		lblNewLabel_1_2.setBounds(10, 118, 83, 14);
 		panel_1.add(lblNewLabel_1_2);
+
+		JTextArea textProducto = new JTextArea();
+		textProducto.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		textProducto.setBackground(new Color(190, 184, 187));
+		textProducto.setBounds(10, 138, 152, 30);
+		panel_1.add(textProducto);
+
+		JLabel lblNewLabel_1_1_2 = new JLabel("Proveedor:");
+		lblNewLabel_1_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		lblNewLabel_1_1_2.setBounds(10, 179, 83, 14);
+		panel_1.add(lblNewLabel_1_1_2);
+
+		JComboBox<Object> comboProv = new JComboBox<>();
+		comboProv.setBounds(10, 201, 152, 30);
+		panel_1.add(comboProv);
+
+		JLabel lblNewLabel_1_1_1 = new JLabel("Costo:");
+		lblNewLabel_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		lblNewLabel_1_1_1.setBounds(10, 304, 83, 14);
+		panel_1.add(lblNewLabel_1_1_1);
 
 		JTextArea textCosto = new JTextArea();
 		textCosto.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		textCosto.setBackground(new Color(190, 184, 187));
-		textCosto.setBounds(10, 278, 152, 30);
+		textCosto.setBounds(10, 329, 152, 30);
 		panel_1.add(textCosto);
-
-		JLabel lblNewLabel_1_1_1 = new JLabel("Costo:");
-		lblNewLabel_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_1_1_1.setBounds(10, 253, 83, 14);
-		panel_1.add(lblNewLabel_1_1_1);
 
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Precio:");
 		lblNewLabel_1_1_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 17));
-		lblNewLabel_1_1_1_1.setBounds(10, 319, 83, 14);
+		lblNewLabel_1_1_1_1.setBounds(10, 370, 83, 14);
 		panel_1.add(lblNewLabel_1_1_1_1);
 
 		JTextArea textPrecio = new JTextArea();
@@ -238,7 +254,7 @@ public class Inventario extends JFrame {
 		textPrecio.setEditable(false);
 		textPrecio.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		textPrecio.setBackground(new Color(190, 184, 187));
-		textPrecio.setBounds(10, 344, 152, 30);
+		textPrecio.setBounds(10, 395, 152, 30);
 		panel_1.add(textPrecio);
 
 		textCosto.getDocument().addDocumentListener(new DocumentListener() {
@@ -253,147 +269,132 @@ public class Inventario extends JFrame {
 			public void changedUpdate(DocumentEvent e) { calcularPrecio(textCosto, textCantidad, textPrecio); }
 		});
 
-	//inicio botones
+		// inicio botones
 
-		
 		ImageIcon ag = new ImageIcon(getClass().getResource("/agregar.png"));
 		Image agr = ag.getImage();
 		Image agrScaledImg = agr.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
 		ImageIcon agrScaled = new ImageIcon(agrScaledImg);
 
 		JButton lblAgregar = new JButton("Agregar") {
-		    @Override
-		    protected void paintComponent(java.awt.Graphics g) {
-		        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
-		        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
-		        g2.setColor(new Color(192, 192, 192));
-		        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
-		        g2.dispose();
-		        super.paintComponent(g);
-		    }
-
-		    @Override
-		    protected void paintBorder(java.awt.Graphics g) {
-		        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
-		        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
-		        g2.setColor(new Color(150, 150, 150));
-		        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
-		        g2.dispose();
-		    }
+			@Override
+			protected void paintComponent(java.awt.Graphics g) {
+				java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+				g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+				g2.setColor(new Color(192, 192, 192));
+				g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+				g2.dispose();
+				super.paintComponent(g);
+			}
+			@Override
+			protected void paintBorder(java.awt.Graphics g) {
+				java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+				g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+				g2.setColor(new Color(150, 150, 150));
+				g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
+				g2.dispose();
+			}
 		};
 		lblAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+			public void actionPerformed(ActionEvent e) {}
 		});
 		lblAgregar.setIcon(agrScaled);
 		lblAgregar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblAgregar.setForeground(new Color(0, 0, 0));
-		lblAgregar.setBounds(48, 419, 136, 35);
+		lblAgregar.setBounds(203, 436, 136, 35);
 		lblAgregar.setContentAreaFilled(false);
 		lblAgregar.setFocusPainted(false);
 		lblAgregar.setBorderPainted(false);
 		lblAgregar.setOpaque(false);
 		panel_1.add(lblAgregar);
-		
+
 		ImageIcon ed = new ImageIcon(getClass().getResource("/editar.png"));
 		Image edi = ed.getImage();
 		Image ediScaledImg = edi.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
 		ImageIcon ediScaled = new ImageIcon(ediScaledImg);
 
 		JButton lblEditar = new JButton("Editar") {
-		    @Override
-		    protected void paintComponent(java.awt.Graphics g) {
-		        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
-		        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
-		        g2.setColor(new Color(192, 192, 192));
-		        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
-		        g2.dispose();
-		        super.paintComponent(g);
-		    }
-
-		    @Override
-		    protected void paintBorder(java.awt.Graphics g) {
-		        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
-		        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
-		        g2.setColor(new Color(150, 150, 150));
-		        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
-		        g2.dispose();
-		    }
+			@Override
+			protected void paintComponent(java.awt.Graphics g) {
+				java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+				g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+				g2.setColor(new Color(192, 192, 192));
+				g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+				g2.dispose();
+				super.paintComponent(g);
+			}
+			@Override
+			protected void paintBorder(java.awt.Graphics g) {
+				java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+				g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+				g2.setColor(new Color(150, 150, 150));
+				g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
+				g2.dispose();
+			}
 		};
 		lblEditar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
+			public void actionPerformed(ActionEvent e) {}
 		});
 		lblEditar.setIcon(ediScaled);
 		lblEditar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblEditar.setForeground(new Color(0, 0, 0));
-		lblEditar.setBounds(215, 419, 136, 35);
+		lblEditar.setBounds(370, 436, 136, 35);
 		lblEditar.setContentAreaFilled(false);
 		lblEditar.setFocusPainted(false);
 		lblEditar.setBorderPainted(false);
 		lblEditar.setOpaque(false);
 		panel_1.add(lblEditar);
-		
+
 		ImageIcon el = new ImageIcon(getClass().getResource("/eliminar (1).png"));
 		Image eli = el.getImage();
 		Image eliScaledImg = eli.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
 		ImageIcon eliScaled = new ImageIcon(eliScaledImg);
-		
-		JButton lblEliminar = new JButton("Eliminar") {
-		    @Override
-		    protected void paintComponent(java.awt.Graphics g) {
-		        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
-		        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
-		        g2.setColor(new Color(192, 192, 192));
-		        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
-		        g2.dispose();
-		        super.paintComponent(g);
-		    }
 
-		    @Override
-		    protected void paintBorder(java.awt.Graphics g) {
-		        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
-		        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
-		        g2.setColor(new Color(150, 150, 150));
-		        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
-		        g2.dispose();
-		    }
+		JButton lblEliminar = new JButton("Eliminar") {
+			@Override
+			protected void paintComponent(java.awt.Graphics g) {
+				java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+				g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+				g2.setColor(new Color(192, 192, 192));
+				g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+				g2.dispose();
+				super.paintComponent(g);
+			}
+			@Override
+			protected void paintBorder(java.awt.Graphics g) {
+				java.awt.Graphics2D g2 = (java.awt.Graphics2D) g.create();
+				g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON);
+				g2.setColor(new Color(150, 150, 150));
+				g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 30, 30);
+				g2.dispose();
+			}
 		};
 		lblEliminar.setIcon(eliScaled);
 		lblEliminar.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblEliminar.setForeground(new Color(0, 0, 0));
-		lblEliminar.setBounds(378, 419, 150, 35);
+		lblEliminar.setBounds(533, 436, 150, 35);
 		lblEliminar.setContentAreaFilled(false);
 		lblEliminar.setFocusPainted(false);
 		lblEliminar.setBorderPainted(false);
 		lblEliminar.setOpaque(false);
 		panel_1.add(lblEliminar);
-		
-		//fin botones
-		
+
+		// fin botones
+
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(190, 64, 338, 344);
+		panel_3.setBounds(190, 64, 494, 344);
 		panel_1.add(panel_3);
 
-		JTextArea textProducto = new JTextArea();
-		textProducto.setFont(new Font("Monospaced", Font.PLAIN, 17));
-		textProducto.setBackground(new Color(190, 184, 187));
-		textProducto.setBounds(10, 150, 152, 30);
-		panel_1.add(textProducto);
-		
 		JLabel lblNewLabel_3 = new JLabel("$:");
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 19));
-		lblNewLabel_3.setBounds(413, 11, 19, 30);
+		lblNewLabel_3.setBounds(586, 11, 19, 30);
 		panel_1.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("000");
 		lblNewLabel_4.setForeground(new Color(255, 255, 0));
 		lblNewLabel_4.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(433, 15, 95, 28);
+		lblNewLabel_4.setBounds(606, 15, 95, 28);
 		panel_1.add(lblNewLabel_4);
 	}
 }
