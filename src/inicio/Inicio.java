@@ -34,7 +34,7 @@ public class Inicio extends JFrame {
             }
         });
     }
-
+// com
     public Inicio() {
         setTitle("Inicio");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
