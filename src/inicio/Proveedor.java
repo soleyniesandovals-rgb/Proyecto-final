@@ -11,5 +11,5 @@ public class Proveedor {
 
     public int getId() { return id; }
     @Override
-    public String toString() { return nombre; } // Esto es lo que verá el usuario
+    public String toString() { return nombre; } 
 }
