@@ -1,4 +1,4 @@
-package inicio;
+package vista;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionListener;
@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import inicio.Conexion;
+import inicio.SesionActual;
+
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import java.awt.Font;

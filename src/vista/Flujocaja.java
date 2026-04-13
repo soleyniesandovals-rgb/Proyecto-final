@@ -1,4 +1,4 @@
-package inicio;
+package vista;
 
 import java.awt.EventQueue;
 
@@ -375,7 +375,8 @@ public class Flujocaja extends JFrame {
 		lblNewLabel_3.setFont(new Font("Times New Roman", Font.BOLD, 19));
 		lblNewLabel_3.setBounds(574, 11, 19, 30);
 		panel_1.add(lblNewLabel_3);
-
+		
+		//Tiene que ser igual a la suma total de todo lo registrado en flujo de caja
 		JLabel lblNewLabel_4 = new JLabel("000");
 		lblNewLabel_4.setForeground(new Color(0, 128, 0));
 		lblNewLabel_4.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));

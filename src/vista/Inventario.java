@@ -1,4 +1,4 @@
-package inicio;
+package vista;
 
 import java.awt.EventQueue;
 
@@ -391,6 +391,7 @@ public class Inventario extends JFrame {
 		lblNewLabel_3.setBounds(586, 11, 19, 30);
 		panel_1.add(lblNewLabel_3);
 
+		//Tiene que ser igual a la suma total de todo lo registrado en el inventario
 		JLabel lblNewLabel_4 = new JLabel("000");
 		lblNewLabel_4.setForeground(new Color(255, 255, 0));
 		lblNewLabel_4.setFont(new Font("Tempus Sans ITC", Font.PLAIN, 20));

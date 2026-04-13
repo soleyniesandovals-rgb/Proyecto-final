@@ -1,4 +1,4 @@
-package inicio;
+package vista;
 
 import java.awt.EventQueue;
 
@@ -9,7 +9,6 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
@@ -17,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -24,7 +24,6 @@ public class Transacciones extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
 	/**
 	 * Launch the application.
 	 */
@@ -170,8 +169,6 @@ public class Transacciones extends JFrame {
 		panel.add(lblNewLabel_2);
 		lblNewLabel_2.setIcon(iconScaled21);
 
-
-		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
 		panel_1.setBounds(148, 0, 711, 467);
@@ -205,6 +202,7 @@ public class Transacciones extends JFrame {
 		textFecha.setBackground(new Color(190, 184, 187));
 		textFecha.setBounds(10, 250, 152, 30);
 		panel_1.add(textFecha);
+
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Tipo:");
 		lblNewLabel_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 17));

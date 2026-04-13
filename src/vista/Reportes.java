@@ -1,4 +1,4 @@
-package inicio;
+package vista;
 
 import java.awt.EventQueue;
 
@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -47,7 +48,7 @@ public class Reportes extends JFrame {
 	public Reportes() {
 		setTitle("Reportes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 713, 497);
+		setBounds(100, 100, 875, 521);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,7 +57,7 @@ public class Reportes extends JFrame {
 		//menu
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 128, 255));
-		panel.setBounds(0, 0, 147, 458);
+		panel.setBounds(0, 0, 147, 482);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -184,7 +185,7 @@ lblNewLabel_2.setIcon(iconScaled21);
 //menu
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(148, 0, 549, 458);
+		panel_1.setBounds(148, 0, 711, 482);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -194,7 +195,7 @@ lblNewLabel_2.setIcon(iconScaled21);
 		panel_1.add(lblNewLabel);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 100, 518, 298);
+		panel_3.setBounds(30, 100, 655, 298);
 		panel_1.add(panel_3);
 		
 		ImageIcon ag = new ImageIcon(getClass().getResource("/ver.png"));
@@ -229,7 +230,7 @@ lblNewLabel_2.setIcon(iconScaled21);
 		lblVer.setIcon(agrScaled);
 		lblVer.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblVer.setForeground(new Color(0, 0, 0));
-		lblVer.setBounds(67, 409, 136, 35);
+		lblVer.setBounds(135, 421, 136, 35);
 		lblVer.setContentAreaFilled(false);
 		lblVer.setFocusPainted(false);
 		lblVer.setBorderPainted(false);
@@ -269,7 +270,7 @@ lblNewLabel_2.setIcon(iconScaled21);
 		lblImprimir.setIcon(impScaled);
 		lblImprimir.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		lblImprimir.setForeground(new Color(0, 0, 0));
-		lblImprimir.setBounds(314, 409, 136, 35);
+		lblImprimir.setBounds(496, 421, 136, 35);
 		lblImprimir.setContentAreaFilled(false);
 		lblImprimir.setFocusPainted(false);
 		lblImprimir.setBorderPainted(false);
@@ -279,35 +280,35 @@ lblNewLabel_2.setIcon(iconScaled21);
 		
 		JLabel lblFecha = new JLabel("Fecha:");
 		lblFecha.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblFecha.setBounds(20, 59, 54, 30);
+		lblFecha.setBounds(103, 59, 54, 30);
 		panel_1.add(lblFecha);
 		
 		JLabel lblDesde = new JLabel("Desde:");
 		lblDesde.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblDesde.setBounds(94, 59, 62, 30);
+		lblDesde.setBounds(177, 59, 62, 30);
 		panel_1.add(lblDesde);
 		
 		JLabel lblHasta = new JLabel("Hasta:");
 		lblHasta.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblHasta.setBounds(268, 59, 62, 30);
+		lblHasta.setBounds(351, 59, 62, 30);
 		panel_1.add(lblHasta);
 		
 		JRadioButton rdbtntodas = new JRadioButton("Todas");
 		rdbtntodas.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		rdbtntodas.setBackground(new Color(255, 255, 255));
-		rdbtntodas.setBounds(440, 64, 109, 23);
+		rdbtntodas.setBounds(523, 64, 109, 23);
 		panel_1.add(rdbtntodas);
 		
 		JTextArea textdesde = new JTextArea();
 		textdesde.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		textdesde.setBackground(new Color(192, 192, 192));
-		textdesde.setBounds(154, 64, 104, 22);
+		textdesde.setBounds(237, 64, 104, 22);
 		panel_1.add(textdesde);
 		
 		JTextArea texthasta = new JTextArea();
 		texthasta.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		texthasta.setBackground(Color.LIGHT_GRAY);
-		texthasta.setBounds(327, 64, 104, 22);
+		texthasta.setBounds(410, 64, 104, 22);
 		panel_1.add(texthasta);
 
 	}
