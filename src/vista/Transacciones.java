@@ -58,6 +58,16 @@ public class Transacciones extends JFrame {
         }
     }
 
+    private void limpiarCampos() {
+        textDescripcion.setText("");
+        textFecha.setText("");
+        textEstado.setText("");
+        textCantidad.setText("");
+        rdbtnVenta.setSelected(false);
+        rdbtnGasto.setSelected(false);
+        rdbtnAdquisicion.setSelected(false);
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -272,51 +282,38 @@ public class Transacciones extends JFrame {
         lblAgregar.setOpaque(false);
         lblAgregar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	
-            	lblAgregar.addActionListener(new ActionListener() {
-            	    public void actionPerformed(ActionEvent e) {
-            	        if (textDescripcion.getText().isEmpty() || textFecha.getText().isEmpty() || 
-            	            textEstado.getText().isEmpty() || textCantidad.getText().isEmpty() ||
-            	            (!rdbtnVenta.isSelected() && !rdbtnGasto.isSelected() && !rdbtnAdquisicion.isSelected())) {
-            	            
-            	            javax.swing.JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
-            	            return;
-            	        }
-
-            	        try {
-            	            java.sql.Connection cn = Conexion.getConexion();
-            	            java.sql.PreparedStatement ps = cn.prepareStatement(
-            	                "INSERT INTO transacciones (descripcion, tipo, fecha, estado, cantidad, id_usuario) VALUES (?, ?, ?, ?, ?, ?)"
-            	            );
-            	            ps.setString(1, textDescripcion.getText());
-            	            ps.setString(2, rdbtnVenta.isSelected() ? "Venta minorista" : 
-            	                            rdbtnGasto.isSelected() ? "Gasto operativo" : "Adquisición de activos");
-            	            ps.setString(3, textFecha.getText());
-            	            ps.setString(4, textEstado.getText());
-            	            ps.setInt(5, Integer.parseInt(textCantidad.getText()));
-            	            ps.setInt(6, SesionActual.getIdUsuario());
-            	            
-            	            int resultado = ps.executeUpdate();
-            	            if (resultado > 0) {
-            	                javax.swing.JOptionPane.showMessageDialog(null, "Transacción guardada exitosamente");
-            	                limpiarCampos();
-            	                cargarTabla();
-            	            }
-            	            ps.close();
-            	            cn.close();
-            	        } catch (NumberFormatException ex) {
-            	            javax.swing.JOptionPane.showMessageDialog(null, "La cantidad debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
-            	        } catch (Exception ex) {
-            	            javax.swing.JOptionPane.showMessageDialog(null, "Error al guardar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            	        }
-            	    }
-
-					private void limpiarCampos() {
-						// TODO Auto-generated method stub
-						
-					}
-            	});
-
+                if (textDescripcion.getText().isEmpty() || textFecha.getText().isEmpty() || 
+                    textEstado.getText().isEmpty() || textCantidad.getText().isEmpty() ||
+                    (!rdbtnVenta.isSelected() && !rdbtnGasto.isSelected() && !rdbtnAdquisicion.isSelected())) {
+                    
+                    JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    java.sql.Connection cn = Conexion.getConexion();
+                    java.sql.PreparedStatement ps = cn.prepareStatement(
+                        "INSERT INTO transacciones (descripcion, tipo, fecha, estado, cantidad, id_usuario) VALUES (?, ?, ?, ?, ?, ?)"
+                    );
+                    ps.setString(1, textDescripcion.getText());
+                    ps.setString(2, rdbtnVenta.isSelected() ? "Venta minorista" : 
+                                    rdbtnGasto.isSelected() ? "Gasto operativo" : "Adquisición de activos");
+                    ps.setString(3, textFecha.getText());
+                    ps.setString(4, textEstado.getText());
+                    ps.setInt(5, Integer.parseInt(textCantidad.getText()));
+                    ps.setInt(6, SesionActual.getIdUsuario());
+                    int resultado = ps.executeUpdate();
+                    if (resultado > 0) {
+                        JOptionPane.showMessageDialog(null, "Transacción guardada exitosamente");
+                        limpiarCampos();
+                        cargarTabla();
+                    }
+                    ps.close();
+                    cn.close();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "La cantidad debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error al guardar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         panel_1.add(lblAgregar);
@@ -348,62 +345,49 @@ public class Transacciones extends JFrame {
         lblEditar.setOpaque(false);
         lblEditar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-            	lblEditar.addActionListener(new ActionListener() {
-            	    public void actionPerformed(ActionEvent e) {
-            	        int f = tabla.getSelectedRow();
-            	        if (f < 0) {
-            	            javax.swing.JOptionPane.showMessageDialog(null, "Seleccione una transacción para editar", "Error", JOptionPane.ERROR_MESSAGE);
-            	            return;
-            	        }
-
-            	        if (textDescripcion.getText().isEmpty() || textFecha.getText().isEmpty() || 
-            	            textEstado.getText().isEmpty() || textCantidad.getText().isEmpty()) {
-            	            javax.swing.JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
-            	            return;
-            	        }
-
-            	        int confirmacion = javax.swing.JOptionPane.showConfirmDialog(null, 
-            	            "¿Está seguro de editar esta transacción?", "Confirmar", JOptionPane.YES_NO_OPTION);
-            	        
-            	        if (confirmacion == JOptionPane.YES_OPTION) {
-            	            try {
-            	                java.sql.Connection cn = Conexion.getConexion();
-            	                java.sql.PreparedStatement ps = cn.prepareStatement(
-            	                    "UPDATE transacciones SET descripcion=?, tipo=?, fecha=?, estado=?, cantidad=? WHERE idtransacciones=? AND id_usuario=?"
-            	                );
-            	                ps.setString(1, textDescripcion.getText());
-            	                ps.setString(2, rdbtnVenta.isSelected() ? "Venta minorista" : 
-            	                                rdbtnGasto.isSelected() ? "Gasto operativo" : "Adquisición de activos");
-            	                ps.setString(3, textFecha.getText());
-            	                ps.setString(4, textEstado.getText());
-            	                ps.setInt(5, Integer.parseInt(textCantidad.getText()));
-            	                ps.setInt(6, (Integer)modelo.getValueAt(f, 0));
-            	                ps.setInt(7, SesionActual.getIdUsuario());
-            	                
-            	                int resultado = ps.executeUpdate();
-            	                if (resultado > 0) {
-            	                    javax.swing.JOptionPane.showMessageDialog(null, "Transacción actualizada exitosamente");
-            	                    limpiarCampos();
-            	                    cargarTabla();
-            	                }
-            	                ps.close();
-            	                cn.close();
-            	            } catch (NumberFormatException ex) {
-            	                javax.swing.JOptionPane.showMessageDialog(null, "La cantidad debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
-            	            } catch (Exception ex) {
-            	                javax.swing.JOptionPane.showMessageDialog(null, "Error al editar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            	            }
-            	        }
-            	    }
-
-					private void limpiarCampos() {
-						// TODO Auto-generated method stub
-						
-					}
-            	});
+                int f = tabla.getSelectedRow();
+                if (f < 0) {
+                    JOptionPane.showMessageDialog(null, "Seleccione una transacción para editar", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (textDescripcion.getText().isEmpty() || textFecha.getText().isEmpty() || 
+                    textEstado.getText().isEmpty() || textCantidad.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                int confirmacion = JOptionPane.showConfirmDialog(null, 
+                    "¿Está seguro de editar esta transacción?", "Confirmar", JOptionPane.YES_NO_OPTION);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    try {
+                        java.sql.Connection cn = Conexion.getConexion();
+                        java.sql.PreparedStatement ps = cn.prepareStatement(
+                            "UPDATE transacciones SET descripcion=?, tipo=?, fecha=?, estado=?, cantidad=? WHERE idtransacciones=? AND id_usuario=?"
+                        );
+                        ps.setString(1, textDescripcion.getText());
+                        ps.setString(2, rdbtnVenta.isSelected() ? "Venta minorista" : 
+                                        rdbtnGasto.isSelected() ? "Gasto operativo" : "Adquisición de activos");
+                        ps.setString(3, textFecha.getText());
+                        ps.setString(4, textEstado.getText());
+                        ps.setInt(5, Integer.parseInt(textCantidad.getText()));
+                        ps.setInt(6, (Integer)modelo.getValueAt(f, 0));
+                        ps.setInt(7, SesionActual.getIdUsuario());
+                        int resultado = ps.executeUpdate();
+                        if (resultado > 0) {
+                            JOptionPane.showMessageDialog(null, "Transacción actualizada exitosamente");
+                            limpiarCampos();
+                            cargarTabla();
+                        }
+                        ps.close();
+                        cn.close();
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "La cantidad debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Error al editar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
+    
         panel_1.add(lblEditar);
 
         ImageIcon el = new ImageIcon(getClass().getResource("/eliminar (1).png"));
@@ -433,52 +417,39 @@ public class Transacciones extends JFrame {
         lblEliminar.setOpaque(false);
         lblEliminar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-            	lblEliminar.addActionListener(new ActionListener() {
-            	    public void actionPerformed(ActionEvent e) {
-            	        int f = tabla.getSelectedRow();
-            	        if (f < 0) {
-            	            javax.swing.JOptionPane.showMessageDialog(null, "Seleccione una transacción para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
-            	            return;
-            	        }
-
-            	        int confirmacion = javax.swing.JOptionPane.showConfirmDialog(null, 
-            	            "¿Está seguro de eliminar esta transacción?\nNo se puede deshacer esta acción.", 
-            	            "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-            	        
-            	        if (confirmacion == JOptionPane.YES_OPTION) {
-            	            try {
-            	                java.sql.Connection cn = Conexion.getConexion();
-            	                java.sql.PreparedStatement ps = cn.prepareStatement(
-            	                    "DELETE FROM transacciones WHERE idtransacciones=? AND id_usuario=?"
-            	                );
-            	                ps.setInt(1, (Integer)modelo.getValueAt(f, 0));
-            	                ps.setInt(2, SesionActual.getIdUsuario());
-            	                
-            	                int resultado = ps.executeUpdate();
-            	                if (resultado > 0) {
-            	                    javax.swing.JOptionPane.showMessageDialog(null, "Transacción eliminada exitosamente");
-            	                    limpiarCampos();
-            	                    cargarTabla();
-            	                } else {
-            	                    javax.swing.JOptionPane.showMessageDialog(null, "No se pudo eliminar la transacción", "Error", JOptionPane.ERROR_MESSAGE);
-            	                }
-            	                ps.close();
-            	                cn.close();
-            	            } catch (Exception ex) {
-            	                javax.swing.JOptionPane.showMessageDialog(null, "Error al eliminar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            	            }
-            	        }
-            	    }
-
-					private void limpiarCampos() {
-						// TODO Auto-generated method stub
-						
-					}
-            	});
-            
+                int f = tabla.getSelectedRow();
+                if (f < 0) {
+                    JOptionPane.showMessageDialog(null, "Seleccione una transacción para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                int confirmacion = JOptionPane.showConfirmDialog(null, 
+                    "¿Está seguro de eliminar esta transacción?\nNo se puede deshacer esta acción.", 
+                    "Confirmar eliminación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    try {
+                        java.sql.Connection cn = Conexion.getConexion();
+                        java.sql.PreparedStatement ps = cn.prepareStatement(
+                            "DELETE FROM transacciones WHERE idtransacciones=? AND id_usuario=?"
+                        );
+                        ps.setInt(1, (Integer)modelo.getValueAt(f, 0));
+                        ps.setInt(2, SesionActual.getIdUsuario());
+                        int resultado = ps.executeUpdate();
+                        if (resultado > 0) {
+                            JOptionPane.showMessageDialog(null, "Transacción eliminada exitosamente");
+                            limpiarCampos();
+                            cargarTabla();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No se pudo eliminar la transacción", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        ps.close();
+                        cn.close();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Error al eliminar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
+        
         panel_1.add(lblEliminar);
 
         // TABLA

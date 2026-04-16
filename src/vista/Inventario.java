@@ -116,30 +116,26 @@ public class Inventario extends JFrame implements guardable, editable, eliminabl
             double precio = Double.parseDouble(textPrecio.getText().trim().replace(",", "."));
             Proveedor prov = (Proveedor) comboProv.getSelectedItem();
 
-            Connection cn = Conexion.getConexion();
+            try (Connection cn = Conexion.getConexion();
+                PreparedStatement ps = cn.prepareStatement(
+                    "INSERT INTO inventario (id_usuario, codigo, producto, id_proveedor, cantidad, costo, precio) VALUES (?, ?, ?, ?, ?, ?, ?)"
+            )) {
+                ps.setInt(1, SesionActual.getIdUsuario());
+                ps.setString(2, codigo);
+                ps.setString(3, producto);
+                ps.setInt(4, prov.getId());
+                ps.setInt(5, cantidad);
+                ps.setDouble(6, costo);
+                ps.setDouble(7, precio);
 
-            PreparedStatement ps = cn.prepareStatement(
-                "INSERT INTO inventario (id_usuario, codigo, producto, id_proveedor, cantidad, costo, precio) VALUES (?, ?, ?, ?, ?, ?, ?)"
-            );
+                int resultado = ps.executeUpdate();
 
-            ps.setInt(1, SesionActual.getIdUsuario());
-            ps.setString(2, codigo);
-            ps.setString(3, producto);
-            ps.setInt(4, prov.getId());
-            ps.setInt(5, cantidad);
-            ps.setDouble(6, costo);
-            ps.setDouble(7, precio);
-
-            int resultado = ps.executeUpdate();
-
-            if (resultado > 0) {
-                JOptionPane.showMessageDialog(this, "Producto guardado correctamente");
-            } else {
-                JOptionPane.showMessageDialog(this, "No se guardó nada");
+                if (resultado > 0) {
+                    JOptionPane.showMessageDialog(this, "Producto guardado correctamente");
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se guardó nada");
+                }
             }
-
-            ps.close();
-            cn.close();
 
             limpiarCampos();
             cargarTabla();
@@ -161,17 +157,25 @@ public class Inventario extends JFrame implements guardable, editable, eliminabl
             double costo = Double.parseDouble(textCosto.getText().trim());
             double precio = Double.parseDouble(textPrecio.getText().trim());
             Proveedor prov = (Proveedor) comboProv.getSelectedItem();
-            Connection cn = Conexion.getConexion();
-            PreparedStatement ps = cn.prepareStatement(
-                "UPDATE inventario SET codigo=?, producto=?, id_proveedor=?, cantidad=?, costo=?, precio=? WHERE idinventario=?"
-            );
-            ps.setString(1, codigo); ps.setString(2, producto);
-            ps.setInt(3, prov.getId()); ps.setInt(4, cantidad);
-            ps.setDouble(5, costo); ps.setDouble(6, precio); ps.setInt(7, id);
-            ps.executeUpdate();
-            ps.close(); cn.close();
+
+            try (Connection cn = Conexion.getConexion();
+                PreparedStatement ps = cn.prepareStatement(
+                    "UPDATE inventario SET codigo=?, producto=?, id_proveedor=?, cantidad=?, costo=?, precio=? WHERE idinventario=?"
+            )) {
+                ps.setString(1, codigo);
+                ps.setString(2, producto);
+                ps.setInt(3, prov.getId());
+                ps.setInt(4, cantidad);
+                ps.setDouble(5, costo);
+                ps.setDouble(6, precio);
+                ps.setInt(7, id);
+                ps.executeUpdate();
+            }
+
             JOptionPane.showMessageDialog(this, "Producto actualizado.");
-            limpiarCampos(); cargarTabla();
+            limpiarCampos();
+            cargarTabla();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
@@ -185,12 +189,19 @@ public class Inventario extends JFrame implements guardable, editable, eliminabl
                 JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) return;
         try {
             int id = (int) modelo.getValueAt(fila, 0);
-            Connection cn = Conexion.getConexion();
-            PreparedStatement ps = cn.prepareStatement("DELETE FROM inventario WHERE idinventario=?");
-            ps.setInt(1, id); ps.executeUpdate();
-            ps.close(); cn.close();
+
+            try (Connection cn = Conexion.getConexion();
+                PreparedStatement ps = cn.prepareStatement(
+                    "DELETE FROM inventario WHERE idinventario=?"
+            )) {
+                ps.setInt(1, id);
+                ps.executeUpdate();
+            }
+
             JOptionPane.showMessageDialog(this, "Producto eliminado.");
-            limpiarCampos(); cargarTabla();
+            limpiarCampos();
+            cargarTabla();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }

@@ -14,7 +14,6 @@ public class Proveedor {
     public String toString() { return nombre; }
 
 	public int getIdproveedor() {
-		// TODO Auto-generated method stub
-		return 0;
-	} 
+    return id;
+    }
 }

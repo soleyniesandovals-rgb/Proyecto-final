@@ -22,6 +22,7 @@ import javax.swing.JTable; // AGREGADO
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
+import datab.Conexion;
 
 public class Reportes extends JFrame {
 
@@ -224,9 +225,9 @@ public class Reportes extends JFrame {
 		                     "LEFT JOIN flujocaja f ON i.codigo = f.codigo " +
 		                     "GROUP BY i.codigo, i.producto, p.nombre, i.cantidad";
 				
-				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_final", "root", "12345");
-				     Statement st = con.createStatement();
-				     ResultSet rs = st.executeQuery(sql)) {
+				try (Connection con = Conexion.getConexion();
+                  Statement st = con.createStatement();
+                  ResultSet rs = st.executeQuery(sql)) {
 					while (rs.next()) {
 						modelo.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getDouble(6)});
 					}
