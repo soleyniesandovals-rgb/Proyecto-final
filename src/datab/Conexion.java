@@ -1,4 +1,4 @@
-package inicio;
+package datab;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

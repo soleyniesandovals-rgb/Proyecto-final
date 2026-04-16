@@ -3,6 +3,8 @@ package inicio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import datab.Conexion;
+
 /**
  * Representa un movimiento de la tabla `transacciones`.
  * Se conecta con la pantalla Transacciones.java.

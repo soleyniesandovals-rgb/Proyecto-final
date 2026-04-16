@@ -1,4 +1,4 @@
-package inicio;
+package datab;
 
 public class Proveedor {
     private int id;
@@ -11,5 +11,10 @@ public class Proveedor {
 
     public int getId() { return id; }
     @Override
-    public String toString() { return nombre; } 
+    public String toString() { return nombre; }
+
+	public int getIdproveedor() {
+		// TODO Auto-generated method stub
+		return 0;
+	} 
 }

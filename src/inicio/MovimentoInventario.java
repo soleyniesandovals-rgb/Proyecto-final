@@ -3,6 +3,8 @@ package inicio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import datab.Conexion;
+
 /**
  * Representa la entrada de un producto al inventario.
  * Se conecta con la pantalla Inventario.java y guarda en tabla `inventario`.

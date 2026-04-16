@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import inicio.Conexion;
-import inicio.SesionActual;
+import datab.Conexion;
+import datab.SesionActual;
 
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
@@ -38,7 +38,7 @@ public class Inicio extends JFrame {
             }
         });
     }
-// com
+
     public Inicio() {
         setTitle("Inicio");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,12 +54,6 @@ public class Inicio extends JFrame {
         contentPane.add(panel);
         panel.setLayout(null);
 
-        JRadioButton rdbtnNewRadioButton = new JRadioButton("Recordar usuario");
-        rdbtnNewRadioButton.setBackground(new Color(140, 198, 255));
-        rdbtnNewRadioButton.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-        rdbtnNewRadioButton.setBounds(16, 65, 128, 23);
-        panel.add(rdbtnNewRadioButton);
-
         JLabel lblNewLabel = new JLabel("Bienvenido");
         lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 24));
         lblNewLabel.setBounds(72, 11, 118, 29);
@@ -67,31 +61,39 @@ public class Inicio extends JFrame {
 
         JLabel lblNewLabel_1 = new JLabel("Empresa:");
         lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-        lblNewLabel_1.setBounds(16, 107, 68, 23);
+        lblNewLabel_1.setBounds(16, 80, 68, 23);
         panel.add(lblNewLabel_1);
 
         JLabel lblNewLabel_2 = new JLabel("Contraseña:");
         lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-        lblNewLabel_2.setBounds(16, 193, 97, 14);
+        lblNewLabel_2.setBounds(16, 166, 97, 14);
         panel.add(lblNewLabel_2);
 
         JTextArea textempresa = new JTextArea();
-        textempresa.setBounds(16, 134, 202, 29);
+        textempresa.setBounds(16, 107, 202, 29);
         panel.add(textempresa);
 
         JTextArea textcont = new JTextArea();
-        textcont.setBounds(16, 217, 202, 29);
+        textcont.setBounds(16, 190, 202, 29);
         panel.add(textcont);
 
         JButton btnNewButton = new JButton("Ingresar");
         btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        btnNewButton.setBounds(72, 270, 108, 38);
+        btnNewButton.setBounds(72, 243, 108, 38);
         panel.add(btnNewButton);
 
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String empresa = textempresa.getText().trim();
                 String contrasena = textcont.getText().trim();
+
+                if (empresa.isEmpty() || contrasena.isEmpty()) {
+                    JOptionPane.showMessageDialog(null,
+                        "Por favor complete todos los campos.",
+                        "Campos vacíos",
+                        JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
 
                 try {
                     Connection cn = Conexion.getConexion();
@@ -106,8 +108,7 @@ public class Inicio extends JFrame {
                         SesionActual.setIdUsuario(rs.getInt("idusuarios"));
                         SesionActual.setEmpresa(empresa);
                         rs.close(); ps.close(); cn.close();
-                        Transacciones ventana = new Transacciones();
-                        ventana.setVisible(true);
+                        new Transacciones().setVisible(true);
                         dispose();
                     } else {
                         rs.close(); ps.close(); cn.close();

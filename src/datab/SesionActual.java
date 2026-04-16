@@ -1,4 +1,4 @@
-package inicio;
+package datab;
 
 public class SesionActual {
     private static int idUsuario;

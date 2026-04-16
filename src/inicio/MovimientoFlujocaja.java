@@ -3,6 +3,8 @@ package inicio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import datab.Conexion;
+
 /**
  * Representa una operación de flujo de caja (venta de producto).
  * Se conecta con la pantalla Flujocaja.java y guarda en tabla `flujocaja`.
