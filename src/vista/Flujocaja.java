@@ -40,7 +40,6 @@ public class Flujocaja extends JFrame {
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     
-    // Declaración de variables faltantes
     private DefaultTableModel modelo;
     private JTable tabla;
     private JTextArea textCodigo;
@@ -132,7 +131,7 @@ public class Flujocaja extends JFrame {
             int cantidad = Integer.parseInt(textCantidad.getText().trim());
             double precio = Double.parseDouble(textPrecio.getText().trim());
 
-            // 1. INSERTAR EN FLUJO CAJA
+            // INSERTAR EN FLUJO CAJA
             PreparedStatement ps1 = cn.prepareStatement(
                 "INSERT INTO flujocaja (id_usuario, codigo, producto, cantidad, precio, total) VALUES (?,?,?,?,?,?)"
             );
@@ -144,7 +143,7 @@ public class Flujocaja extends JFrame {
             ps1.setDouble(6, precio * cantidad);
             ps1.executeUpdate();
 
-            // 2. RESTAR EN INVENTARIO
+            // RESTAR EN INVENTARIO
             PreparedStatement ps2 = cn.prepareStatement(
                 "UPDATE inventario SET cantidad = cantidad - ? WHERE codigo = ? AND id_usuario = ?"
             );
@@ -186,7 +185,7 @@ public class Flujocaja extends JFrame {
 
             int diferencia = nuevaCantidad - cantidadAnterior;
 
-            // 1. ACTUALIZAR FLUJO CAJA
+            // ACTUALIZAR FLUJO CAJA
             PreparedStatement ps1 = cn.prepareStatement(
                 "UPDATE flujocaja SET cantidad=?, precio=?, total=? WHERE idflujocaja=?"
             );
@@ -196,7 +195,7 @@ public class Flujocaja extends JFrame {
             ps1.setInt(4, id);
             ps1.executeUpdate();
 
-            // 2. AJUSTAR INVENTARIO
+            //  AJUSTAR INVENTARIO
             PreparedStatement ps2 = cn.prepareStatement(
                 "UPDATE inventario SET cantidad = cantidad - ? WHERE codigo = ? AND id_usuario = ?"
             );
@@ -233,14 +232,14 @@ public class Flujocaja extends JFrame {
             String codigo = modelo.getValueAt(fila, 1).toString();
             int cantidad = (Integer) modelo.getValueAt(fila, 3);
 
-            // 1. ELIMINAR DE FLUJO
+            // ELIMINAR DE FLUJO
             PreparedStatement ps1 = cn.prepareStatement(
                 "DELETE FROM flujocaja WHERE idflujocaja=?"
             );
             ps1.setInt(1, id);
             ps1.executeUpdate();
 
-            // 2. DEVOLVER AL INVENTARIO
+            // DEVOLVER AL INVENTARIO
             PreparedStatement ps2 = cn.prepareStatement(
                 "UPDATE inventario SET cantidad = cantidad + ? WHERE codigo=? AND id_usuario=?"
             );
@@ -270,7 +269,7 @@ public class Flujocaja extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
         
-        // Botones del menú (mantengo la funcionalidad existente)
+        // Botones del menú 
         ImageIcon ic = new ImageIcon(getClass().getResource("/inicio/inventario.png"));
         Image img = ic.getImage();
         Image imgScaled = img.getScaledInstance(45, 45, Image.SCALE_SMOOTH);
@@ -438,7 +437,7 @@ public class Flujocaja extends JFrame {
             public void changedUpdate(DocumentEvent e) { calcularTotal(textPrecio, textCantidad, textTotal); }
         });
 
-        // Botones funcionales
+        // Botones 
         ImageIcon ag = new ImageIcon(getClass().getResource("/guardar.png"));
         Image agr = ag.getImage();
         Image agrScaledImg = agr.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
