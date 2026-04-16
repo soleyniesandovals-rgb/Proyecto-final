@@ -27,6 +27,8 @@ import javax.swing.table.DefaultTableModel;
 import datab.Conexion;
 import datab.SesionActual;
 
+import javax.swing.UIManager;
+
 public class Transacciones extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -69,6 +71,20 @@ public class Transacciones extends JFrame {
     }
 
     public static void main(String[] args) {
+        // Nimbus 
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex) { }
+        } // ── fin Nimbus ──
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

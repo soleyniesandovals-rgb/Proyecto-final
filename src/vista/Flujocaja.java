@@ -35,6 +35,8 @@ import datab.Conexion;
 import inicio.MovimientoFlujocaja;
 import datab.SesionActual;
 
+import javax.swing.UIManager;
+
 public class Flujocaja extends JFrame {
 
     private static final long serialVersionUID = 1L;
@@ -50,6 +52,20 @@ public class Flujocaja extends JFrame {
     private JLabel lblTotalGeneral;
 
     public static void main(String[] args) {
+            // Nimbus 
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex) { }
+        } // fin Nimbus 
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {

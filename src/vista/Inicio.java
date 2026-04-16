@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Inicio extends JFrame {
 
@@ -27,6 +28,22 @@ public class Inicio extends JFrame {
     private JPanel contentPane;
 
     public static void main(String[] args) {
+        // Nimbus 
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex) {
+                // Manejo de excepción
+            }
+        } // fin Nimbus
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -35,8 +52,8 @@ public class Inicio extends JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
-        });
+                }
+            });
     }
 
     public Inicio() {

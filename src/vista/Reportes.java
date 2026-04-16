@@ -23,6 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import datab.Conexion;
+import javax.swing.UIManager;
 
 public class Reportes extends JFrame {
 
@@ -35,6 +36,20 @@ public class Reportes extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+	    // Nimbus 
+		try {
+			for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception e) {
+			try {
+				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+			} catch (Exception ex) { }
+		} // fin Nimbus 
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

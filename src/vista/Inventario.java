@@ -33,6 +33,7 @@ import datab.Proveedor;
 import datab.Conexion;
 import inicio.MovimentoInventario;
 import datab.SesionActual;
+import javax.swing.UIManager;
 
 public class Inventario extends JFrame implements guardable, editable, eliminable {
 
@@ -43,6 +44,20 @@ public class Inventario extends JFrame implements guardable, editable, eliminabl
     private JComboBox<Proveedor> comboProv;
 
     public static void main(String[] args) {
+        // Nimbus 
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            try {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } catch (Exception ex) { }
+        } // fin Nimbus 
+
         EventQueue.invokeLater(() -> {
             try { new Inventario().setVisible(true); }
             catch (Exception e) { e.printStackTrace(); }
